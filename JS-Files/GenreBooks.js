@@ -25,7 +25,7 @@ function refreshCart()
         arrTemp = arrTemp.concat(booksInCart);
         localStorage.setItem("booksInCart", JSON.stringify(arrTemp));
     }
-}
+} 
 
 function populateMap(doc)
 {
