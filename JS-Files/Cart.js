@@ -31,7 +31,7 @@ function incrementBooksCount(book)
     count++;
     books.set(book.data().imageStr, count);
     totalPrice+=book.data().price;
-    refreshCart();
+    refreshCart(); 
 }
 
 function decrementBooksCount(book)
