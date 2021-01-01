@@ -1,0 +1,219 @@
+body
+{
+    margin: 0;
+    background-color: #f6f6f6;
+}
+
+.headerSection
+{
+    background-color: #7b002c;
+    display: flex;
+    box-sizing: border-box;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+@media only screen and (min-width: 700px) 
+{
+    .LogoImage
+    {
+        width: 80px;
+        height: 80px;
+        margin-left: 2%;
+    }
+}
+
+@media only screen and (max-width: 700px) 
+{
+    .LogoImage
+    {
+        width: 60px;
+        height: 60px;
+        margin-left: 2%;
+    }
+}
+
+.headerSection a ~ img
+{
+    width: 40%;
+}
+
+.Cart
+{
+    width: 40px;
+    height: 40px;
+}
+
+nav a
+{
+    text-decoration: none;
+    color: black;
+    font-size: 19px;
+    font-weight: bold;
+}
+
+nav a:hover
+{
+    /*border-bottom: 3px solid #da2e2a;*/
+    padding-bottom: 3px;
+    color:#7b002c;
+}
+
+@media only screen and (min-width: 700px) 
+{
+    .navigationList
+    {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        list-style-type: none; 
+        padding-bottom: 12px;
+        margin-left: 40px;  
+        margin-right: 40px; 
+        border-bottom: 5px solid  #7b002c;
+    }
+}
+
+@media only screen and (max-width: 700px) 
+{
+    .navigationList
+    {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        list-style-type: none; 
+        padding-bottom: 12px;
+        margin-left: 40px;  
+        margin-right: 40px; 
+        border-bottom: 5px solid  #7b002c;
+    }
+}
+
+.noDefaultListStyle
+{
+    list-style-type: none; 
+    padding:0;
+    margin: 0;
+}
+
+.bookListed
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 3%;
+    margin-right: 3%;
+    margin-bottom: 10px;
+    background-color: #e7e7e7;
+    padding: 10px;
+}
+
+button
+{
+    border: 1px solid	#b4b4b4;
+    background-color: 	#b4b4b4;
+    color:black;
+    font-family: sans-serif;
+    font-size: 14px;
+}
+
+button:hover
+{
+    border: 1px solid #7b002c;
+    background-color: #7b002c;
+    color:white;
+    font-family: sans-serif;
+    font-size: 14px;
+}
+
+.bookListed img
+{
+    width: 100px;
+    height: 140px;
+}
+
+.bookListed .remove
+{
+    margin-left: 5px;
+    padding: 7px;
+}
+
+.bookDescription
+{
+    display: flex;
+    flex-direction: row;
+}
+
+.bookInfo
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 20px;
+}
+
+.bookInfo span
+{
+    font-family: sans-serif;
+}
+
+.bookInfo span:not(:last-child)
+{
+    margin-bottom: 10px;
+}
+
+.countItemsSection
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.countItemsSection input
+{
+    height: 25px;
+    width: 30px;
+    margin-right: 10px;
+    font-size: 15px;
+    font-family: sans-serif;
+    text-align: center;
+}
+
+.incrementDecrement
+{
+    display: flex;
+    flex-direction: column;
+}
+
+.incrementDecrement button
+{
+    width: 30px;
+    height: 30px;
+}
+
+.incrementDecrement button:not(:last-child)
+{
+    margin-bottom: 3px;
+}
+
+.totalPrice
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 3%;
+    margin-right: 3%;
+    margin-bottom: 10px;
+    background-color: #e7e7e7;
+    padding: 10px;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+.totalPrice button
+{
+    padding: 10px;
+}

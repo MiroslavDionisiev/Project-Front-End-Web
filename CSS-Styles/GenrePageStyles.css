@@ -1,0 +1,257 @@
+body
+{
+    margin: 0;
+    background-color: #f6f6f6;
+}
+
+.headerSection
+{
+    background-color: #7b002c;
+    display: flex;
+    box-sizing: border-box;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+@media only screen and (min-width: 700px) 
+{
+    .LogoImage
+    {
+        width: 80px;
+        height: 80px;
+        margin-left: 2%;
+    }
+}
+
+@media only screen and (max-width: 700px) 
+{
+    .LogoImage
+    {
+        width: 60px;
+        height: 60px;
+        margin-left: 2%;
+    }
+}
+
+.headerSection a ~ img
+{
+    width: 40%;
+}
+
+.Cart
+{
+    width: 40px;
+    height: 40px;
+}
+
+nav a
+{
+    text-decoration: none;
+    color: black;
+    font-size: 19px;
+    font-weight: bold;
+}
+
+nav a:hover
+{
+    /*border-bottom: 3px solid #da2e2a;*/
+    padding-bottom: 3px;
+    color:#7b002c;
+}
+
+@media only screen and (min-width: 700px) 
+{
+    .navigationList
+    {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        list-style-type: none; 
+        padding-bottom: 12px;
+        margin-left: 40px;  
+        margin-right: 40px; 
+        border-bottom: 5px solid  #7b002c;
+    }
+}
+
+@media only screen and (max-width: 700px) 
+{
+    .navigationList
+    {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        list-style-type: none; 
+        padding-bottom: 12px;
+        margin-left: 40px;  
+        margin-right: 40px; 
+        border-bottom: 5px solid  #7b002c;
+    }
+}
+
+.noDefaultListStyle
+{
+    list-style-type: none; 
+    padding:0;
+    margin: 0;
+}
+
+@media only screen and (min-width: 760px) 
+{
+    main 
+    {
+        display: flex;
+        flex-direction: row;
+        box-sizing: border-box;
+    }
+
+    .leftSide
+    {
+        box-sizing: border-box;
+        width: 15%;
+        margin-top: 0.5%;
+        margin-left: 5%;
+    }
+
+    .rightSide
+    {
+        flex: 1;
+        width: 80%;
+        margin-left: 3%;
+    }
+}
+
+@media only screen and (max-width: 760px) 
+{
+    main 
+    {
+        display: flex;
+        flex-direction: column;
+        box-sizing: border-box;
+    }
+
+    .leftSide
+    {
+        box-sizing: border-box;
+        width: 94%;
+        margin-top: 0.5%;
+        margin-left: 3%;
+        margin-right: 3%;
+    }
+
+    .rightSide
+    {
+        flex: 1;
+        width: 94%;
+        margin: 3%;
+    }
+}
+
+div.leftSide h3
+{
+    font-family: sans-serif;
+}
+
+div.leftSide form
+{
+    padding: 25px 20px;
+    border: 2px solid  #bebebe;
+}
+div.leftSide form input
+{
+    margin-left: 10px;
+    margin-top: 13px;
+}
+
+main h1
+{
+    margin-right: 9%;
+    font-family: sans-serif;
+    padding-bottom: 5px;
+    border-bottom: 4px solid  #7b002c;
+    border-bottom: 2px solid  #bebebe;
+}
+
+/*.sortAllBooks
+{
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;*/
+    /*margin-left: 3%;*/
+    /*margin-right: 9%;
+    border-top: 2px solid  #bebebe;
+    border-bottom: 2px solid  #bebebe;
+}*/
+
+/*div.sortAllBooks label
+{
+    margin-left: 3%;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+div.sortAllBooks select
+{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 6px;
+}*/
+
+.books
+{
+    display: flex;
+    flex-wrap: wrap; /* wraps to a new row as there is not enough space */
+}
+
+.bookToSelect
+{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    flex-grow: 1; /* fills the whole space */
+    margin-top: 20px;
+}
+
+.bookToSelect
+{
+    margin-right: 7%;
+    margin-bottom: 10px;
+}
+
+.bookToSelect img
+{
+    height: 300px;
+    width: 200px;
+}
+
+.bookToSelect a
+{
+    border: 1px solid	#b4b4b4;
+    background-color: 	#b4b4b4;
+    color:black;
+    border-radius: 20px;
+    font-size: 18px;
+    padding-top:6px;
+    padding-bottom:6px;
+    padding-left: 40px;
+    padding-right: 40px;
+    text-decoration: none;
+}
+
+.bookToSelect a:hover
+{
+    border: 1px solid #7b002c;
+    background-color: #7b002c;
+    color:white;
+    font-size: 18px;
+    padding-top:6px;
+    padding-bottom:6px;
+    padding-left: 40px;
+    padding-right: 40px;
+    text-decoration: none;
+}
