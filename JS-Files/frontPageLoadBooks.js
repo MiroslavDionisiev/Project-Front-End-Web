@@ -51,7 +51,7 @@ function renderLeftSide(genre, genreSelector, index)
 
     genresList.appendChild(ulLeft);
     return ulLeft;
-}
+} 
 
 function renderRightSide(doc, genre, index)
 {
