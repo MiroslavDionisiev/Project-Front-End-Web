@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en-UK"> 
+    <head>
+        <title>Front Page</title>
+        <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-storage.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
+        <link rel="stylesheet" href="./CSS-Styles/frontPageStyles.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+
+    <body>
+        <header>
+            <div class="headerSection">
+                <a href="./frontPage.html"><img src="./Logos/ShopLogo.png" alt="Logo" class="LogoImage"></a>
+                <img src="./Logos/Logo.png" alt="Title">
+                <a href="./Cart.html"><img src="./Logos/Cart.png" id="Cart" class="Cart" alt="CartLogo"></a>
+            </div>
+        </header>
+        <nav>
+            <ul class="navigationList">
+                <li><a href="">Фентъзи</a></li>
+                <li><a href="">Свременна проза</a></li>
+                <li><a href="">Трилъри</a></li>
+                <li><a href="">Поезия</a></li>
+                <li><a href="">Исторически романи</a></li>
+            </ul>
+        </nav>
+        <main>
+            <ul id="genres-list" class="noDefaultListStyle">
+                <!-- an example of what the frontPageLoadBooks.js creates -->
+                <!--<li>
+                    <div class="rowOfMainList">
+                        <ul class="colourForLeftFirstType leftSideOfRow noDefaultListStyle">
+                            <li>
+                                Horror
+                            </li>
+                            <li>
+                                <button class="buttonStyleFirst">More</button>
+                            </li>
+                        </ul>
+                        <ul class="colourForRightFirstType rightSideOfRow noDefaultListStyle">
+                            <li>
+                                <div class="bookDescription">
+                                    <img src="./booktoview.jpg">
+                                    <span>На смелите се прощава</span>
+                                    <span>Крис Клийв</span>
+                                    <span>Цена: 17.91</span>
+                                    <button>Add to cart</button>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="bookDescription">
+                                    <img src="./booktoview.jpg">
+                                    <span>На смелите се прощава</span>
+                                    <span>Крис Клийв</span>
+                                    <span>Цена: 17.91</span>
+                                    <button>Add to cart</button>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="bookDescription">
+                                    <img src="./booktoview.jpg">
+                                    <span>На смелите се прощава</span>
+                                    <span>Крис Клийв</span>
+                                    <span>Цена: 17.91</span>
+                                    <button>Add to cart</button>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="bookDescription">
+                                    <img src="./booktoview.jpg">
+                                    <span>На смелите се прощава</span>
+                                    <span>Крис Клийв</span>
+                                    <span>Цена: 17.91</span>
+                                    <button>Add to cart</button>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="bookDescription">
+                                    <img src="./booktoview.jpg">
+                                    <span>На смелите се прощава</span>
+                                    <span>Крис Клийв</span>
+                                    <span>Цена: 17.91</span>
+                                    <button>Add to cart</button>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>-->
+            </ul>
+        </main>
+        <footer style="height: 170px; background-color: white;">
+
+        </footer>
+    </body>
+
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        var firebaseConfig = {
+            apiKey: "AIzaSyCHf_qWTHwvQ1oT8W7NDrRULgxJcjsUVIY",
+            authDomain: "bookacholicebookstore.firebaseapp.com",
+            databaseURL: "https://bookacholicebookstore-default-rtdb.firebaseio.com",
+            projectId: "bookacholicebookstore",
+            storageBucket: "bookacholicebookstore.appspot.com",
+            messagingSenderId: "166659853590",
+            appId: "1:166659853590:web:e894e9f67138ae6b049437",
+            measurementId: "G-S1NNV9ZVPN"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+        const db = firebase.firestore();
+        db.settings({timestampsInSnapshots: true});
+    </script>
+    <script src="./JS-Files/frontPageLoadBooks.js"></script>
+</html>
