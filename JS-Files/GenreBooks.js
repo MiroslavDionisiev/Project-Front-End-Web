@@ -25,7 +25,7 @@ function refreshCart()
         arrTemp = arrTemp.concat(booksInCart);
         localStorage.setItem("booksInCart", JSON.stringify(arrTemp));
     }
-} 
+}
 
 function populateMap(doc)
 {
@@ -55,6 +55,7 @@ function renderBook(doc)
     button.setAttribute("href", "./Cart.html");
     button.addEventListener("click", ()=>{
         booksInCart.push(documentName);
+        refreshCart();
     });
 
     var storage = firebase.storage();
