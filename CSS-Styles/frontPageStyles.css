@@ -273,3 +273,21 @@ ul.rightSideOfRow img
     padding-right: 40px;
     text-decoration: none;
 }
+
+
+footer{
+    height: 170px;
+    background-color: #3b4b56;
+    display: flex;
+}
+
+footer div {
+    color: #dbd7d7;
+    margin-left: 40px;
+    margin-right: 10%;
+}
+
+.aboutRef{
+    color: #dbd7d7;
+    text-decoration: none;
+}

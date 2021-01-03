@@ -71,7 +71,7 @@ function renderRightSide(doc, genre, index)
             if(indexCount<=8)
             {
                 let currentBook = doc.data().genreSelector + indexCurrent;
-                console.log(currentBook);
+                //console.log(currentBook);
                 ulRight.appendChild(renderRightSideUtility(book, doc.data().genreSelector, currentBook));
                 indexCurrent++;
             }
@@ -99,21 +99,51 @@ function renderRightSideUtility(doc, genre, imageName)
     var genreRef = storageRef.child(genre);
     imageName+=".jpg"
     var imgRef = genreRef.child(imageName);
-    
+
+
+    let saveURL = "";
+
     imgRef.getDownloadURL().then(function(url) {
       img.setAttribute("src", url);
+      saveURL = url;
     });
 
+    
     name.textContent=doc.data().name;
     author.textContent=doc.data().author;
     price.textContent=doc.data().priceStr;
     button.textContent="Добави в количка";
     button.setAttribute("href", "./Cart.html")
 
+
+    
     button.addEventListener("click", ()=>{
         booksInCart.push(documentName);
         refreshCart();
     });
+
+    /*HERE */
+
+    let dataRef = doc.data();
+    let elementsToClick = [];
+    elementsToClick.push(name);
+    elementsToClick.push(img);
+
+        
+    elementsToClick.forEach(function(elem) {
+        elem.addEventListener("click", function() {
+            let bookInfo = {
+                img: saveURL,
+                data: doc.data()
+            };
+
+            localStorage.setItem("bookInformation",  JSON.stringify(bookInfo));  
+
+            window.location.href="./Books"+ "/"+ genreRef.name + "/" + transliterate(name.textContent) + ".html";
+        });
+    });
+
+
 
     div.setAttribute("class", "bookDescription");
 
@@ -126,6 +156,55 @@ function renderRightSideUtility(doc, genre, imageName)
 
     return li;
 }
+
+function clickBook(nameTextContent, nameGenreRef){
+    console.log(nameTextContent);
+    window.location.href="./Books"+ "/"+ nameGenreRef + "/" + transliterate(nameTextContent) + ".html";
+}
+
+var transliterate = function(text) {
+
+    text = text
+        .replace(/а/gi, 'a')
+        .replace(/б/gi, 'b')
+        .replace(/в/gi, 'v')
+        .replace(/г/gi, 'g')
+        .replace(/д/gi, 'd')
+        .replace(/е/gi, 'e')
+        .replace(/ж/gi, 'zh')
+        .replace(/з/gi, 'z')
+        .replace(/и/gi, 'i')
+        .replace(/й/gi, 'y')
+        .replace(/ѝ/gi, 'i')
+        .replace(/к/gi, 'k')
+        .replace(/л/gi, 'l')
+        .replace(/м/gi, 'm')
+        .replace(/н/gi, 'n')
+        .replace(/о/gi, 'o')
+        .replace(/п/gi, 'p')
+        .replace(/р/gi, 'r')
+        .replace(/с/gi, 's')
+        .replace(/т/gi, 't')
+        .replace(/у/gi, 'u')
+        .replace(/ф/gi, 'f')
+        .replace(/х/gi, 'h')
+        .replace(/ц/gi, 'ts')
+        .replace(/ч/gi, 'ch')
+        .replace(/ш/gi, 'sh')
+        .replace(/щ/gi, 'sht')
+        .replace(/ъ/gi, 'a')
+        .replace(/ь/gi, 'y')
+        .replace(/ю/gi, 'yu')
+        .replace(/я/gi, 'ya')
+
+        .replace(/\u0020/gi,'-')
+        .replace(',','')
+        .replace('.','')
+        
+
+    return text;
+};
+
 
 function render(doc, index)
 {
@@ -142,6 +221,7 @@ function render(doc, index)
 db.collection('Books').get().then((snapshot)=>{
     let index = 0;
     snapshot.docs.forEach(doc => {
+
         render(doc,index);
         index++;
     });
