@@ -61,7 +61,7 @@ nav a:hover
     color:#7b002c;
 }
 
-@media only screen and (min-width: 700px) 
+@media only screen and (min-width: 690px) 
 {
     .navigationList
     {
@@ -77,7 +77,7 @@ nav a:hover
     }
 }
 
-@media only screen and (max-width: 700px) 
+@media only screen and (max-width: 690px) 
 {
     .navigationList
     {
@@ -254,4 +254,22 @@ div.sortAllBooks select
     padding-left: 40px;
     padding-right: 40px;
     text-decoration: none;
+}
+
+footer
+{
+    display: flex;
+    flex-direction: row;
+}
+
+footer div:first-child
+{
+    margin-left:1%;
+    margin-right: 10%;
+}
+
+footer a
+{
+    text-decoration: none;
+    color: black;
 }

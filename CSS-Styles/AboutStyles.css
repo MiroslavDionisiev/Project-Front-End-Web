@@ -92,31 +92,20 @@ nav a:hover
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-footer{
-    height: 170px;
-    background-color: #3b4b56;
+footer
+{
     display: flex;
+    flex-direction: row;
 }
 
-footer div {
-    color: #dbd7d7;
-    margin-left: 40px;
+footer div:first-child
+{
+    margin-left:1%;
     margin-right: 10%;
 }
 
-.aboutRef{
-    color: #dbd7d7;
+footer a
+{
     text-decoration: none;
+    color: black;
 }
