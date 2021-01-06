@@ -4,15 +4,15 @@
         
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="./CSS-Styles/CartStyles.css">
+        <link rel="stylesheet" href="./CSS-Styles/GenrePageStyles.css">
 
         <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-firestore.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-storage.js"></script>
 
-        <title>Cart</title>
+        <title>HistoricalNovels</title>
     </head>
-    <body>
+    <body id="HistoricalNovels">
         <header>
             <div class="headerSection">
                 <a href="./frontPage.html"><img src="./Logos/ShopLogo.png" alt="Logo" class="LogoImage"></a>
@@ -29,32 +29,38 @@
                 <li><a href="./HistoricalNovels.html">Исторически романи</a></li>
             </ul>
         </nav>
+
         <main>
-           <!--<div class="bookListed">
-                <div class="bookDescription">
-                    <img src="booktoview.jpg">
-                    <div class="bookInfo">
+            <div class="leftSide">
+                <h3>Пазарувай по</h3>
+                <form id = "authors" action="/action_page.php">
+                    <span style="color:gray;">АВТОР</span>
+                    <br>
+                  </form>
+            </div>
+
+            <div class="rightSide">
+                <h1>Исотирически романи</h1>
+                <!--<div class="sortAllBooks">
+                    <label for="options">Сортирай по</label>
+                    <select id="options" name="options">
+                        <option value="none">Не е избрана опция</option>
+                        <option value="price">Цена</option>
+                        <option value="name">Име на продукта</option>
+                    </select>
+                </div>-->
+
+                <div id="booksList" class="books">
+                    <!--<div class="bookToSelect">
+                        <img src="./booktoview.jpg">
                         <span>Name</span>
                         <span>Author</span>
                         <span>Price</span>
-                    </div>
+                        <button>Buy</button>
+                    </div>-->
                 </div>
-                <div class="countItemsSection">
-                    <input type="text" id="countItems" name="countItems">
-                    <div class="incrementDecrement">
-                        <button>+</button>
-                        <button>-</button>
-                    </div>
-                    <button class="remove">Премахни книга</button>
-                </div>
-            </div> -->
-        </main>
-        <div class="totalPrice">
-            <button id="clearCart">Изчисти количка</button>
-            <div id="endSum">
-                Обща сума: 0.00
             </div>
-        </div>
+        </main>
 
         <footer>
             <div>
@@ -93,7 +99,6 @@
         const db = firebase.firestore();
         db.settings({timestampsInSnapshots: true});
     </script>
-    <script src="./JS-Files/Cart.js"></script>
-
+    <script src="./JS-Files/GenreBooks.js"></script>
 
 </html>
