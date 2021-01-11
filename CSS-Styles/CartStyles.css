@@ -222,6 +222,8 @@ footer
 {
     display: flex;
     flex-direction: row;
+    background-color: #3b4b56;
+    color: white;
 }
 
 footer div:first-child
@@ -233,5 +235,5 @@ footer div:first-child
 footer a
 {
     text-decoration: none;
-    color: black;
+    color: white;
 }

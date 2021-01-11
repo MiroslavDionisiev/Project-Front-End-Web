@@ -7,11 +7,11 @@ var genre = document.getElementsByTagName('body')[0].id;
 
 var booksInCart = [];
 
-const cartLogo = document.querySelector("#Cart");
+/*const cartLogo = document.querySelector("#Cart");
 cartLogo.addEventListener("click", ()=>{
     refreshCart();
     window.location.href="Cart.html";
-});
+});*/
 
 function refreshCart()
 {
@@ -44,6 +44,7 @@ function populateMap(doc)
 function renderBook(doc)
 {
     let div = document.createElement('div');
+    let description = document.createElement('a');
     let img = document.createElement('img');
     let name = document.createElement('span');
     let author = document.createElement('span');
@@ -53,6 +54,7 @@ function renderBook(doc)
     let documentName = doc.data().imageStr;
 
     button.setAttribute("href", "./Cart.html");
+    button.setAttribute("id", "buttonToCart");
     button.addEventListener("click", ()=>{
         booksInCart.push(documentName);
         refreshCart();
@@ -74,14 +76,62 @@ function renderBook(doc)
     price.textContent = doc.data().priceStr;
     button.textContent = "Добави в количка";
 
-    div.appendChild(img);
-    div.appendChild(name);
-    div.appendChild(author);
-    div.appendChild(price);
+    let directory = "./Books/"+genre+"/"+transliterate(doc.data().name)+".html";
+    description.setAttribute("class", "selectBook");
+    description.setAttribute("href", directory);
+    description.appendChild(img);
+    description.appendChild(name);
+    description.appendChild(author);
+    description.appendChild(price);
+
+    div.appendChild(description);
     div.appendChild(button);
 
     booksList.appendChild(div);
 }
+
+function transliterate(text) {
+
+    text = text
+        .replace(/а/gi, 'a')
+        .replace(/б/gi, 'b')
+        .replace(/в/gi, 'v')
+        .replace(/г/gi, 'g')
+        .replace(/д/gi, 'd')
+        .replace(/е/gi, 'e')
+        .replace(/ж/gi, 'zh')
+        .replace(/з/gi, 'z')
+        .replace(/и/gi, 'i')
+        .replace(/й/gi, 'y')
+        .replace(/ѝ/gi, 'i')
+        .replace(/к/gi, 'k')
+        .replace(/л/gi, 'l')
+        .replace(/м/gi, 'm')
+        .replace(/н/gi, 'n')
+        .replace(/о/gi, 'o')
+        .replace(/п/gi, 'p')
+        .replace(/р/gi, 'r')
+        .replace(/с/gi, 's')
+        .replace(/т/gi, 't')
+        .replace(/у/gi, 'u')
+        .replace(/ф/gi, 'f')
+        .replace(/х/gi, 'h')
+        .replace(/ц/gi, 'ts')
+        .replace(/ч/gi, 'ch')
+        .replace(/ш/gi, 'sh')
+        .replace(/щ/gi, 'sht')
+        .replace(/ъ/gi, 'a')
+        .replace(/ь/gi, 'y')
+        .replace(/ю/gi, 'yu')
+        .replace(/я/gi, 'ya')
+
+        .replace(/\u0020/gi,'-')
+        .replace(',','')
+        .replace('.','')
+        
+
+    return text;
+};
 
 function listAuthors()
 {

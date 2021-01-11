@@ -96,6 +96,11 @@ footer
 {
     display: flex;
     flex-direction: row;
+    background-color: #3b4b56;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
 
 footer div:first-child
@@ -107,5 +112,5 @@ footer div:first-child
 footer a
 {
     text-decoration: none;
-    color: black;
+    color: white;
 }

@@ -36,7 +36,7 @@ function renderLeftSide(genre, genreSelector, index)
     }
 
     span.textContent=genre;
-    button.textContent="Повече книги"
+    button.textContent="Виж още"
     let HrefNext = genreSelector+".html";
     button.setAttribute("href", HrefNext);
 
@@ -51,7 +51,7 @@ function renderLeftSide(genre, genreSelector, index)
 
     genresList.appendChild(ulLeft);
     return ulLeft;
-} 
+}
 
 function renderRightSide(doc, genre, index)
 {
@@ -71,7 +71,7 @@ function renderRightSide(doc, genre, index)
             if(indexCount<=8)
             {
                 let currentBook = doc.data().genreSelector + indexCurrent;
-                //console.log(currentBook);
+                console.log(currentBook);
                 ulRight.appendChild(renderRightSideUtility(book, doc.data().genreSelector, currentBook));
                 indexCurrent++;
             }
@@ -88,6 +88,7 @@ function renderRightSideUtility(doc, genre, imageName)
 
     let li = document.createElement('li');
     let div = document.createElement('div');
+    let description = document.createElement('a');
     let img = document.createElement('img');
     let name = document.createElement('span');
     let author = document.createElement('span');
@@ -99,70 +100,43 @@ function renderRightSideUtility(doc, genre, imageName)
     var genreRef = storageRef.child(genre);
     imageName+=".jpg"
     var imgRef = genreRef.child(imageName);
-
-
-    let saveURL = "";
-
+    
     imgRef.getDownloadURL().then(function(url) {
       img.setAttribute("src", url);
-      saveURL = url;
     });
 
-    
     name.textContent=doc.data().name;
     author.textContent=doc.data().author;
     price.textContent=doc.data().priceStr;
     button.textContent="Добави в количка";
     button.setAttribute("href", "./Cart.html")
+    button.setAttribute("id", "buttonToCart")
 
-
-    
     button.addEventListener("click", ()=>{
         booksInCart.push(documentName);
         refreshCart();
     });
 
-    /*HERE */
-
-    let dataRef = doc.data();
-    let elementsToClick = [];
-    elementsToClick.push(name);
-    elementsToClick.push(img);
-
-        
-    elementsToClick.forEach(function(elem) {
-        elem.addEventListener("click", function() {
-            let bookInfo = {
-                img: saveURL,
-                data: doc.data()
-            };
-
-            localStorage.setItem("bookInformation",  JSON.stringify(bookInfo));  
-
-            window.location.href="./Books"+ "/"+ genreRef.name + "/" + transliterate(name.textContent) + ".html";
-        });
-    });
-
-
-
     div.setAttribute("class", "bookDescription");
 
-    div.appendChild(img);
-    div.appendChild(name);
-    div.appendChild(author);
-    div.appendChild(price);
+    let directory = "./Books/"+genre+"/"+transliterate(doc.data().name)+".html";
+
+    description.setAttribute("class", "selectBook");
+    description.setAttribute("href", directory);
+    description.appendChild(img);
+    description.appendChild(name);
+    description.appendChild(author);
+    description.appendChild(price);
+
+
+    div.appendChild(description);
     div.appendChild(button);
     li.appendChild(div);
 
     return li;
 }
 
-function clickBook(nameTextContent, nameGenreRef){
-    console.log(nameTextContent);
-    window.location.href="./Books"+ "/"+ nameGenreRef + "/" + transliterate(nameTextContent) + ".html";
-}
-
-var transliterate = function(text) {
+function transliterate(text) {
 
     text = text
         .replace(/а/gi, 'a')
@@ -205,7 +179,6 @@ var transliterate = function(text) {
     return text;
 };
 
-
 function render(doc, index)
 {
     let liMain = document.createElement('li');
@@ -221,7 +194,6 @@ function render(doc, index)
 db.collection('Books').get().then((snapshot)=>{
     let index = 0;
     snapshot.docs.forEach(doc => {
-
         render(doc,index);
         index++;
     });

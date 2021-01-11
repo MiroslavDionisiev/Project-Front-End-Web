@@ -26,13 +26,14 @@ db.collection("Books").doc(genre).collection("Titles").doc(bookInfo).get().then(
 
 function refreshCart()
 {
-    if(JSON.parse(localStorage.getItem("booksInCart"))===null)
+    if(localStorage.getItem("booksInCart")===null)
     {
-        localStorage.setItem("booksInCart", booksInCart);
+        localStorage.setItem("booksInCart", JSON.stringify(booksInCart));
     }
     else
     {
-        let arrTemp = JSON.parse(localStorage.getItem("booksInCart"));
+        let arrTemp = JSON.parse(JSON.stringify(localStorage.getItem("booksInCart")));
+        arrTemp = arrTemp.split(',');
         arrTemp = arrTemp.concat(booksInCart);
         localStorage.setItem("booksInCart", JSON.stringify(arrTemp));
     }
@@ -41,5 +42,8 @@ function refreshCart()
 button.addEventListener("click", ()=>{
     booksInCart.push(bookInfo);
     refreshCart();
-    window.location.href = "./Cart.html";
+    if(localStorage.getItem("booksInCart")!==null)
+    {
+        window.location.href = "../../Cart.html";
+    }
 });
