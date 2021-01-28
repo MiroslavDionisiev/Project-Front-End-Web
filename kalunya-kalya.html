@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./CSS-Styles/BookPageStyles.css">
+    
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-storage.js"></script>
+
+
+    <title></title>
+</head>
+<body id="HistoricalNovels8">
+    <header>
+        <div class="headerSection">
+            <a href="./frontPage.html"><img src="./Logos/ShopLogo.png" alt="Logo" class="LogoImage"></a>
+            <img src="./Logos/Logo.png" alt="Title">
+            <a href="./Cart.html"><img src="./Logos/Cart.png" id="Cart" class="Cart" alt="CartLogo"></a>
+        </div>
+    </header>
+    <nav>
+        <ul class="navigationList">
+            <li><a href="./Fantasy.html">Фентъзи</a></li>
+            <li><a href="./Fiction.html">Съвременна проза</a></li>
+            <li><a href="./Thriller.html">Трилъри</a></li>
+            <li><a href="./Poetry.html">Поезия</a></li>
+            <li><a href="./HistoricalNovels.html">Исторически романи</a></li>
+        </ul>
+    </nav>
+    <main>        
+        <div>
+            <img id = "ImageBook">
+            <section class = "bookInfo">
+                <ul class = "noDefaultListStyle">
+                    <li id="NameBook"></li>
+                    <li id="Author"></li>
+                    <li id="Price"></li>
+                    <li id="Button"><button id="ToCart">Добави в количка</button></li>
+                </ul>
+            </section>
+        </div>
+        
+        <div>
+            <h2>Анотация</h2>
+            <p id = "Resume"></p>
+        </div>
+    </main>
+
+    <footer>
+        <div>
+            <h2>За Bookacholic</h2>
+            <a href="./About.html" class = "aboutRef">За нас</a> 
+        </div>
+
+        <div>
+            <h2>Контакти</h2>
+            <p> Адрес: София, ул. Васил Априлов 11 </p>
+            <p> Имейл: <a href = "mailto: bookacholic@gmail.com">bookacholic@gmail.com</a></p>
+            <p> Телефон: +359 895 555 555</p>
+        </div>
+    </footer>
+</body>
+
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        var firebaseConfig = {
+            apiKey: "AIzaSyCHf_qWTHwvQ1oT8W7NDrRULgxJcjsUVIY",
+            authDomain: "bookacholicebookstore.firebaseapp.com",
+            databaseURL: "https://bookacholicebookstore-default-rtdb.firebaseio.com",
+            projectId: "bookacholicebookstore",
+            storageBucket: "bookacholicebookstore.appspot.com",
+            messagingSenderId: "166659853590",
+            appId: "1:166659853590:web:e894e9f67138ae6b049437",
+            measurementId: "G-S1NNV9ZVPN"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+        const db = firebase.firestore();
+        db.settings({timestampsInSnapshots: true});
+    </script>
+
+<script src="./JS-Files/BookPage.js"></script>
+</html>

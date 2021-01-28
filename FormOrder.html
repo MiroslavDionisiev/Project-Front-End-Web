@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./CSS-Styles/FormStyles.css">
+    <title>Поръчка</title>
+</head>
+<body>
+    <header>
+        <div class="headerSection">
+            <a href="./frontPage.html"><img src="./Logos/ShopLogo.png" alt="Logo" class="LogoImage"></a>
+            <img src="./Logos/Logo.png" alt="Title">
+            <a href="./Cart.html"><img src="./Logos/Cart.png" id="Cart" class="Cart" alt="CartLogo"></a>
+        </div>
+    </header>
+    <nav>
+        <ul class="navigationList">
+            <li><a href="./Fantasy.html">Фентъзи</a></li>
+            <li><a href="./Fiction.html">Съвременна проза</a></li>
+            <li><a href="./Thriller.html">Трилъри</a></li>
+            <li><a href="./Poetry.html">Поезия</a></li>
+            <li><a href="./HistoricalNovels.html">Исторически романи</a></li>
+        </ul>
+    </nav>
+    <main>
+        <form action="./action_page.php">
+            <h2>Основна информация</h2>
+            
+            <div class = "generalInformation">
+                <div>
+                    <label for="fname">Име:</label>
+                    <input type="text" id="fname" name="fname" placeholder="Въведете собствено име">
+                </div>
+               
+                <div>
+                    <label for="lname">Фамилия:</label>
+                    <input type="text" id="lname" name="lname" placeholder="Въведете фамилно име:">
+                </div>
+                
+                <div>
+                    <label for="emailCustomer">Имейл адрес: </label>
+                    <input type="email" id="emailCustomer" name="emailCustomer" placeholder="Въведете имейл за връзка">
+                </div>
+            
+                <div>
+                    <label for="lname">Телефон:</label>
+                    <input type="text" id="phoneCustomer" name="phoneCustomer" placeholder="Въведете телефон:">
+                </div>
+            
+            </div>
+
+            <h2>Куриер</h2>
+            <div class = "deliverer">
+
+                <label for="deliverer">
+                    <input type="radio" name="deliverer" value="Speedy" checked id = "speedyRadio">
+                <img src="./Logos/speedy-logo.png" alt="Speedy" class = "delivererLogo">
+                </label>
+                
+                <label for="deliverer">
+                    <input type="radio" name="deliverer" value="Econt" id = "econtRadio">
+                <img src="./Logos/Econt.png" alt="Speedy" class = "delivererLogo">
+                </label>
+            
+            </div>
+            
+            <h2>Данни за доставка</h2>
+            
+            <div class = "deliverer">
+                <label for="addressDelivery" id = "officeSpeedyID">
+                <input type="radio" name="addressDelivery" value="office" checked>
+                До офис на Спиди</label>
+
+                <label for="addressDelivery" id = "officeEcontID">
+                <input type="radio" name="addressDelivery" value="office" checked>
+                До офис на Еконт</label> 
+
+                <label for="addressDelivery" id = "toAddressID">
+                    <input type="radio" name="addressDelivery" value="address"  >
+                    До адрес</label> 
+
+            
+            
+            </div>
+            <label for="town">Населено място:</label><br>
+            <input type="text" id="town" name="town" placeholder="Въведете населено място:"><br><br>
+
+            
+            <input type="submit" value="Submit">
+          </form>
+
+
+    </main>
+
+    <footer>
+        <div>
+            <h2>За Bookacholic</h2>
+            <a href="./About.html" class = "aboutRef">За нас</a> 
+        </div>
+
+        <div>
+            <h2>Контакти</h2>
+            <p> Адрес: София, ул. Васил Априлов 11 </p>
+            <p> Имейл: <a href = "mailto: bookacholic@gmail.com">bookacholic@gmail.com</a></p>
+            <p> Телефон: +359 895 555 555</p>
+        </div>
+    </footer>
+
+    <script src="./JS-Files/FormOrder.js"></script>
+</body>
+</html>
