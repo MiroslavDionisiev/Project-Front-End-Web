@@ -1,6 +1,8 @@
 body
 {
     margin: 0;
+    position: relative;
+    min-height: 100vh;
     background-color: #f6f6f6;
 }
 
@@ -92,14 +94,26 @@ nav a:hover
     }
 }
 
+main
+{
+    padding-bottom: 180px;
+}
+
+#aboutInfo
+{
+    margin-left: 3%;
+    margin-right: 3%;
+}
+
 footer
 {
     display: flex;
     flex-direction: row;
     background-color: #3b4b56;
     color: white;
-    position: fixed;
+    position: absolute;
     bottom: 0;
+    height: 180px;
     width: 100%;
 }
 

@@ -1,6 +1,8 @@
 body
 {
     margin: 0;
+    position: relative;
+    min-height: 100vh;
     background-color: #f6f6f6;
 }
 
@@ -199,6 +201,11 @@ button:hover
     margin-bottom: 3px;
 }
 
+.endCalculations
+{
+    padding-bottom: 180px;
+}
+
 .totalPrice
 {
     display: flex;
@@ -218,12 +225,30 @@ button:hover
     padding: 10px;
 }
 
+.finishOrderDiv
+{
+    display: flex;
+    justify-content: end;
+    margin-left: 3%;
+    margin-right: 3%;
+    margin-bottom: 10px;
+}
+
+#finishOrder
+{
+    padding: 10px;
+}
+
 footer
 {
     display: flex;
     flex-direction: row;
     background-color: #3b4b56;
     color: white;
+    position: absolute;
+    bottom: 0;
+    height: 180px;
+    width: 100%;
 }
 
 footer div:first-child

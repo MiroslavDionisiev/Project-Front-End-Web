@@ -119,7 +119,7 @@ function renderRightSideUtility(doc, genre, imageName)
 
     div.setAttribute("class", "bookDescription");
 
-    let directory = "./Books/"+genre+"/"+transliterate(doc.data().name)+".html";
+    let directory = transliterate(doc.data().name)+".html";
 
     description.setAttribute("class", "selectBook");
     description.setAttribute("href", directory);

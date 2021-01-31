@@ -1,6 +1,8 @@
 body
 {
     margin: 0;
+    position: relative;
+    min-height: 100vh;
     background-color: #f6f6f6;
 }
 
@@ -92,23 +94,6 @@ nav a:hover
     }
 }
 
-footer{
-    height: 170px;
-    background-color: #3b4b56;
-    display: flex;
-}
-
-footer div {
-    color: #dbd7d7;
-    margin-left: 40px;
-    margin-right: 10%;
-}
-
-.aboutRef{
-    color: #dbd7d7;
-    text-decoration: none;
-}
-
 main 
 {
     display: flex;
@@ -116,6 +101,7 @@ main
     flex-direction: column;
     margin-left: 7%;  
     margin-right: 7%; 
+    padding-bottom: 180px;
 }
 
 .noDefaultListStyle
@@ -219,4 +205,28 @@ main div:last-child p{
     padding: 15px;
     border: 2px solid #7b002c;
     border-radius: 10px;
+}
+
+footer
+{
+    display: flex;
+    flex-direction: row;
+    background-color: #3b4b56;
+    color: white;
+    position: absolute;
+    bottom: 0;
+    height: 180px;
+    width: 100%;
+}
+
+footer div:first-child
+{
+    margin-left:1%;
+    margin-right: 10%;
+}
+
+footer a
+{
+    text-decoration: none;
+    color: white;
 }

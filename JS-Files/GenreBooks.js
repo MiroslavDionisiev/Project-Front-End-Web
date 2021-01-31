@@ -76,7 +76,7 @@ function renderBook(doc)
     price.textContent = doc.data().priceStr;
     button.textContent = "Добави в количка";
 
-    let directory = "./Books/"+genre+"/"+transliterate(doc.data().name)+".html";
+    let directory = transliterate(doc.data().name)+".html";
     description.setAttribute("class", "selectBook");
     description.setAttribute("href", directory);
     description.appendChild(img);

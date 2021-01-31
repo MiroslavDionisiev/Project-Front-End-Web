@@ -1,6 +1,8 @@
 body
 {
     margin: 0;
+    position: relative;
+    min-height: 100vh;
     background-color: #f6f6f6;
 }
 
@@ -97,6 +99,11 @@ nav a:hover
     list-style-type: none; 
     padding:0;
     margin: 0;
+}
+
+main
+{
+    padding-bottom: 180px;
 }
 
 .colourForLeftFirstType
@@ -279,6 +286,10 @@ footer
     flex-direction: row;
     background-color: #3b4b56;
     color: white;
+    position: absolute;
+    bottom: 0;
+    height: 180px;
+    width: 100%;
 }
 
 footer div:first-child

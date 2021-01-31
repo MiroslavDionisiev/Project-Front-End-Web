@@ -1,6 +1,8 @@
 body
 {
     margin: 0;
+    position: relative;
+    min-height: 100vh;
     background-color: #f6f6f6;
 }
 
@@ -38,6 +40,11 @@ body
 .headerSection a ~ img
 {
     width: 40%;
+}
+
+main
+{
+    padding-bottom: 180px;
 }
 
 .Cart
@@ -247,6 +254,10 @@ footer
     flex-direction: row;
     background-color: #3b4b56;
     color: white;
+    position: absolute;
+    bottom: 0;
+    height: 180px;
+    width: 100%;
 }
 
 footer div:first-child
