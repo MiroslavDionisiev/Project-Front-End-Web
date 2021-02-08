@@ -1,11 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./CSS-Styles/FormStyles.css">
+
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
+
     <title>Поръчка</title>
 </head>
+
 <body>
     <header>
         <div class="headerSection">
@@ -25,70 +33,117 @@
     </nav>
     <main>
         <form action="./action_page.php">
-            <h2>Основна информация</h2>
+            <h2>Поръчани продукти</h2>
+            <table id="tableOrder">
+                <tr>
+                    <td>Заглавие</td>
+                    <td>Брой</td>
+                    <td>Цена</td>
+                </tr>
+            </table>
             
-            <div class = "generalInformation">
+            <h2>Основна информация</h2>
+
+            <div class="generalInformation">
                 <div>
                     <label for="fname">Име:</label>
                     <input type="text" id="fname" name="fname" placeholder="Въведете собствено име">
                 </div>
-               
+
                 <div>
                     <label for="lname">Фамилия:</label>
                     <input type="text" id="lname" name="lname" placeholder="Въведете фамилно име:">
                 </div>
-                
+
                 <div>
                     <label for="emailCustomer">Имейл адрес: </label>
                     <input type="email" id="emailCustomer" name="emailCustomer" placeholder="Въведете имейл за връзка">
                 </div>
-            
+
                 <div>
                     <label for="lname">Телефон:</label>
                     <input type="text" id="phoneCustomer" name="phoneCustomer" placeholder="Въведете телефон:">
                 </div>
-            
+
             </div>
 
             <h2>Куриер</h2>
-            <div class = "deliverer">
+            <div class="deliverer">
 
                 <label for="deliverer">
-                    <input type="radio" name="deliverer" value="Speedy" checked id = "speedyRadio">
-                <img src="./Logos/speedy-logo.png" alt="Speedy" class = "delivererLogo">
+                    <input type="radio" name="deliverer" value="Speedy" checked id="speedyRadio">
+                    <img src="./Logos/speedy-logo.png" alt="Speedy" class="delivererLogo">
                 </label>
-                
+
                 <label for="deliverer">
-                    <input type="radio" name="deliverer" value="Econt" id = "econtRadio">
-                <img src="./Logos/Econt.png" alt="Speedy" class = "delivererLogo">
+                    <input type="radio" name="deliverer" value="Econt" id="econtRadio">
+                    <img src="./Logos/Econt.png" alt="Speedy" class="delivererLogo">
                 </label>
-            
+
             </div>
-            
+
             <h2>Данни за доставка</h2>
-            
-            <div class = "deliverer">
-                <label for="addressDelivery" id = "officeSpeedyID">
-                <input type="radio" name="addressDelivery" value="office" checked>
-                До офис на Спиди</label>
 
-                <label for="addressDelivery" id = "officeEcontID">
-                <input type="radio" name="addressDelivery" value="office" checked>
-                До офис на Еконт</label> 
+            <div class="addressDeliveryClass">
+                <div  class = "addressDeliveryClassInside">
+                    <label for="addressDelivery" id="officeSpeedyID">
+                        <input type="radio" name="addressDelivery" value="officeSpeedy" id="officeSpeedyRadioID"
+                            checked>
+                        До офис на Спиди</label>
 
-                <label for="addressDelivery" id = "toAddressID">
-                    <input type="radio" name="addressDelivery" value="address"  >
-                    До адрес</label> 
+                    <label for="addressDelivery" id="officeEcontID">
+                        <input type="radio" name="addressDelivery" value="officeEcont" id="officeEcontRadioID" checked>
+                        До офис на Еконт</label>
 
-            
-            
+                    <label for="addressDelivery" id="toAddressID">
+                        <input type="radio" name="addressDelivery" value="address" id="deliveryToAddressRadio">
+                        До адрес</label>
+
+                </div>
+
+
+                <div id="deliveryToOffice" class = "addressDeliveryClassInside">
+                    <label for="cityOffice">Град: </label>
+                    <select name="city" id="citySelect">
+                        <option value="" disabled selected>Изберете град:</option>
+                    </select>
+                    <label for="office">Офис:</label>
+                    <select name="office" id="officeSelect">
+                        <option value="" disabled selected>Изберете офис:</option>
+                    </select>
+                </div>
+
+                <div id="deliveryToAddress" style="display: none;" class = "addressDeliveryClassInside">
+                    <div>
+                        <label for="cityAddress">Град:</label>
+                        <input type="text" name="cityAddress" placeholder="Въведете град">
+                    </div>
+                    <div>
+                        <label for="postCode">П.К:</label>
+                        <input type="text" name="postCode">
+                    </div>
+
+                    <div>
+                        <label for="addressStreet">Адрес: </label>
+                        <input type="text" name="addressStreet" placeholder="Въведете адрес">
+                    </div>
+
+                </div>
+
+                <div class = "noteDiv">
+                    <label for="additionalNotes">Бележка (уточнение за поръчката):</label>
+                    
+                    <input type="text" name="additionalNotes" id = "notesTextField">
+                </div>
+
+                
             </div>
-            <label for="town">Населено място:</label><br>
-            <input type="text" id="town" name="town" placeholder="Въведете населено място:"><br><br>
-
+            <div class = "finishOrderAndPrice">
+                <p id="totalPrice">Цена общо: </p>
+                <input type="button" value="Поръчайте" id="submitButton">
+            </div>
             
-            <input type="submit" value="Submit">
-          </form>
+        </form>
 
 
     </main>
@@ -96,17 +151,37 @@
     <footer>
         <div>
             <h2>За Bookacholic</h2>
-            <a href="./About.html" class = "aboutRef">За нас</a> 
+            <a href="./About.html" class="aboutRef">За нас</a>
         </div>
 
         <div>
             <h2>Контакти</h2>
             <p> Адрес: София, ул. Васил Априлов 11 </p>
-            <p> Имейл: <a href = "mailto: bookacholic@gmail.com">bookacholic@gmail.com</a></p>
+            <p> Имейл: <a href="mailto: bookacholic@gmail.com">bookacholic@gmail.com</a></p>
             <p> Телефон: +359 895 555 555</p>
         </div>
     </footer>
+    <script>
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        var firebaseConfig = {
+            apiKey: "AIzaSyCHf_qWTHwvQ1oT8W7NDrRULgxJcjsUVIY",
+            authDomain: "bookacholicebookstore.firebaseapp.com",
+            databaseURL: "https://bookacholicebookstore-default-rtdb.firebaseio.com",
+            projectId: "bookacholicebookstore",
+            storageBucket: "bookacholicebookstore.appspot.com",
+            messagingSenderId: "166659853590",
+            appId: "1:166659853590:web:e894e9f67138ae6b049437",
+            measurementId: "G-S1NNV9ZVPN"
+        };
 
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+        const db = firebase.firestore();
+        db.settings({ timestampsInSnapshots: true });
+    </script>
     <script src="./JS-Files/FormOrder.js"></script>
 </body>
+
 </html>

@@ -183,3 +183,12 @@ for (const [key, value] of books.entries()) {
         renderBook(doc, genre, value);
     });
 }
+
+
+/*HERE*/
+
+document.getElementById("finishOrder").addEventListener("click", ()=>{
+    
+    localStorage.books = JSON.stringify(Array.from(books.entries()));
+    location.href = "./FormOrder.html";
+})
