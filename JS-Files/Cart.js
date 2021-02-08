@@ -1,3 +1,4 @@
+// book that have beein added to the cart extracted from the local storage
 var booksInCart = JSON.parse(localStorage.getItem("booksInCart"));
 var mainSection = document.getElementsByTagName('main')[0];
 var endSum = document.querySelector("#endSum")
@@ -5,6 +6,7 @@ var clearCartBtn = document.querySelector("#clearCart")
 var totalPrice = 0;
 var books = new Map();
 
+// all book are removed from the cart
 clearCartBtn.addEventListener("click", ()=>{
     books = new Map();
     localStorage.setItem("booksInCart", JSON.stringify([]));
@@ -25,6 +27,7 @@ function refreshCart()
     localStorage.setItem("booksInCart", JSON.stringify(newCart));
 }
 
+// increments the number of books of a title already added to the cart
 function incrementBooksCount(book)
 {
     let count = books.get(book.data().imageStr);
@@ -34,6 +37,7 @@ function incrementBooksCount(book)
     refreshCart();
 }
 
+// decrements the number of books of a title already added to the cart
 function decrementBooksCount(book)
 {
     let count = books.get(book.data().imageStr);
@@ -51,6 +55,7 @@ function decrementBooksCount(book)
     refreshCart();
 }
 
+// populates a map of the books and the number of copies
 function orderInMap()
 {
     booksInCart.forEach(book => {
@@ -92,6 +97,7 @@ function renderBook(book, genre, numberOfBooks)
     countItemsDiv.setAttribute("class", "countItemsSection");
     changeCountDiv.setAttribute("class", "incrementDecrement");
 
+    // loads image of book cover
     let img = document.createElement('img');
     var storage = firebase.storage();
     var storageRef = storage.ref();
@@ -104,6 +110,7 @@ function renderBook(book, genre, numberOfBooks)
         img.setAttribute("alt", "bookCover");
     });
 
+    // book data
     let spanName = document.createElement('span');
     let spanAuthor = document.createElement('span');
     let spanPrice = document.createElement('span');
@@ -111,12 +118,14 @@ function renderBook(book, genre, numberOfBooks)
     spanName.textContent = book.data().name;
     spanPrice.textContent = book.data().priceStr;
 
+    // number of copies
     let input = document.createElement('input');
     input.setAttribute("type", "text");
     input.setAttribute("id", "countItems");
     input.setAttribute("name", "countItems");
     input.value = numberOfBooks;
 
+    // increment and decrement buttons
     let increment = document.createElement('button');
     let decrement = document.createElement('button');
     increment.textContent = "+";
@@ -137,6 +146,7 @@ function renderBook(book, genre, numberOfBooks)
         printTotalPrice();
     });
 
+    // to remove a book with all copies
     let remove = document.createElement('button');
     remove.textContent = "Премахни книга";
     remove.setAttribute("class", "remove");
