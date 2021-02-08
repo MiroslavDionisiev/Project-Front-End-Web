@@ -1,7 +1,8 @@
 const genresList = document.querySelector("#genres-list");
 //const cartLogo = document.querySelector("#Cart");
-var booksInCart = [];
+var booksInCart = []; 
 
+// adds the new books in the the local storage item 
 function refreshCart()
 {
     if(JSON.parse(localStorage.getItem("booksInCart"))===null)
@@ -16,6 +17,7 @@ function refreshCart()
     }
 }
 
+// renders the genre title boxes 
 function renderLeftSide(genre, genreSelector, index)
 {
     let ulLeft = document.createElement('ul');
@@ -53,6 +55,7 @@ function renderLeftSide(genre, genreSelector, index)
     return ulLeft;
 }
 
+// renders the book listing on a row
 function renderRightSide(doc, genre, index)
 {
     let ulRight = document.createElement('ul');
@@ -82,6 +85,7 @@ function renderRightSide(doc, genre, index)
     return ulRight;
 }
 
+// DOM of a book on the list
 function renderRightSideUtility(doc, genre, imageName)
 {
     let documentName = imageName;
@@ -95,6 +99,7 @@ function renderRightSideUtility(doc, genre, imageName)
     let price = document.createElement('span');
     let button = document.createElement('a');
 
+    // image of a book cover
     var storage = firebase.storage();
     var storageRef = storage.ref();
     var genreRef = storageRef.child(genre);
@@ -105,6 +110,7 @@ function renderRightSideUtility(doc, genre, imageName)
       img.setAttribute("src", url);
     });
 
+    // book data
     name.textContent=doc.data().name;
     author.textContent=doc.data().author;
     price.textContent=doc.data().priceStr;
@@ -136,6 +142,7 @@ function renderRightSideUtility(doc, genre, imageName)
     return li;
 }
 
+// generates book title
 function transliterate(text) {
 
     text = text
@@ -179,6 +186,7 @@ function transliterate(text) {
     return text;
 };
 
+// renders a row
 function render(doc, index)
 {
     let liMain = document.createElement('li');
