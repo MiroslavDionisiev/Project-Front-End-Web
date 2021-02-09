@@ -27,7 +27,6 @@ function refreshCart()
     }
 }
 
-// generates a map of all the authors and the number of books that are offered
 function populateMap(doc)
 {
     if(authorsAndBooks.has(doc.data().author)==false)
@@ -61,7 +60,6 @@ function renderBook(doc)
         refreshCart();
     });
 
-    // loads image of book cover
     var storage = firebase.storage();
     var storageRef = storage.ref();
     var genreRef = storageRef.child(genre);
@@ -72,7 +70,6 @@ function renderBook(doc)
         img.setAttribute("src", url);
     });
 
-    // book data
     div.setAttribute("class", "bookToSelect");
     name.textContent = doc.data().name;
     author.textContent = doc.data().author;
@@ -136,14 +133,12 @@ function transliterate(text) {
     return text;
 };
 
-// lists all the authors that are offered with the number of books
 function listAuthors()
 {
     for (const [key, value] of authorsAndBooks.entries()) {
         addAuthor(key, value, false);
     }
 }   
-
 
 function addAuthor(name, value, isChecked)
 {
@@ -156,7 +151,6 @@ function addAuthor(name, value, isChecked)
             checkbox.setAttribute("checked", true);
         }
 
-        // on click on an author the only books that are shown are theirs and when clicked again all books are being shown
         checkbox.addEventListener('change', function()
         {
             clearBooks()
@@ -191,7 +185,6 @@ function addAuthor(name, value, isChecked)
         formAuthors.appendChild(document.createElement('br'));
 }
 
-// clears all books to generate new enlisted depending whether an author is being checked
 function clearBooks()
 {
     while (booksList.lastElementChild) 
@@ -200,7 +193,6 @@ function clearBooks()
     }
 }
 
-// clears the list of authors in the form
 function clearAuthors()
 {
     while (formAuthors.lastElementChild && formAuthors.lastElementChild!=formAuthors.firstElementChild) 

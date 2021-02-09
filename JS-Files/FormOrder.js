@@ -13,7 +13,6 @@ function getOffices() {
   xhttp.addEventListener("load", function () {
     
     citiesAndOffices = JSON.parse(xhttp.responseText);
-    //console.log(citiesAndOffices);
   });
 
   //false means we send a Synchronous request, so that we are sure we have the needed data before we try to work with it
@@ -24,9 +23,7 @@ getOffices();
 
 function addCities(deliverer) {
 
-  //console.log(citiesAndOffices["Speedy"]["cities"]);
   for (const [key, value] of Object.entries(citiesAndOffices[deliverer]["cities"])) {
-    //addOffices(deliverer, value.name)
     let option = document.createElement("option");
     option.text = value.name;
     selectCities.add(option);
@@ -47,7 +44,6 @@ function clearSelectOffices() {
 }
 
 function addOffices(deliverer, city) {
-  //console.log(citiesAndOffices[deliverer]["cities"][city]["offices"].length)
   citiesAndOffices[deliverer]["cities"][city]["offices"].forEach(element => {
     let option = document.createElement("option");
     option.text = element.address;
@@ -149,7 +145,8 @@ function transliterate(text) {
 
 //by default Speedy is checked
 if (document.getElementById("speedyRadio").checked == true) {
-  clearSelectCities()
+  clearSelectCities();
+  clearSelectOffices();
   addCities("Speedy");
   document.getElementById("officeSpeedyRadioID").checked = true;
   document.getElementById("officeSpeedyID").style.display = "flex";
@@ -157,7 +154,8 @@ if (document.getElementById("speedyRadio").checked == true) {
 }
 
 if (document.getElementById("econtRadio").checked == true) {
-  clearSelectCities()
+  clearSelectCities();
+  clearSelectOffices();
   addCities("Econt");
   document.getElementById("officeEcontRadioID").checked = true;
   document.getElementById("officeSpeedyID").style.display = "none";
@@ -169,6 +167,7 @@ if (document.getElementById("econtRadio").checked == true) {
 document.getElementById("speedyRadio").addEventListener("change", function () {
   if (document.getElementById("speedyRadio").checked == true) {
     clearSelectCities()
+    clearSelectOffices();
     addCities("Speedy");
     document.getElementById("officeSpeedyID").style.display = "flex";
     document.getElementById("officeEcontID").style.display = "none";
@@ -179,7 +178,8 @@ document.getElementById("speedyRadio").addEventListener("change", function () {
 })
 document.getElementById("econtRadio").addEventListener("change", function () {
   if (document.getElementById("econtRadio").checked == true) {
-    clearSelectCities()
+    clearSelectCities();
+    clearSelectOffices();
     addCities("Econt");
     document.getElementById("officeEcontID").style.display = "flex";
     document.getElementById("officeSpeedyID").style.display = "none";

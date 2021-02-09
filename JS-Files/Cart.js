@@ -1,4 +1,3 @@
-// book that have beein added to the cart extracted from the local storage
 var booksInCart = JSON.parse(localStorage.getItem("booksInCart"));
 var mainSection = document.getElementsByTagName('main')[0];
 var endSum = document.querySelector("#endSum")
@@ -6,83 +5,66 @@ var clearCartBtn = document.querySelector("#clearCart")
 var totalPrice = 0;
 var books = new Map();
 
-// all book are removed from the cart
-clearCartBtn.addEventListener("click", ()=>{
+clearCartBtn.addEventListener("click", () => {
     books = new Map();
     localStorage.setItem("booksInCart", JSON.stringify([]));
-    window.location.href="./Cart.html";
+    window.location.href = "./Cart.html";
 });
 
-function refreshCart()
-{
+function refreshCart() {
     let newCart = [];
-    for(const [key, value] of books.entries())
-    {
-        let valueCopy = value; 
-        while(valueCopy--)
-        {
+    for (const [key, value] of books.entries()) {
+        let valueCopy = value;
+        while (valueCopy--) {
             newCart.push(key);
         }
     }
     localStorage.setItem("booksInCart", JSON.stringify(newCart));
 }
 
-// increments the number of books of a title already added to the cart
-function incrementBooksCount(book)
-{
+function incrementBooksCount(book) {
     let count = books.get(book.data().imageStr);
     count++;
     books.set(book.data().imageStr, count);
-    totalPrice+=book.data().price;
+    totalPrice += book.data().price;
     refreshCart();
 }
 
-// decrements the number of books of a title already added to the cart
-function decrementBooksCount(book)
-{
+function decrementBooksCount(book) {
     let count = books.get(book.data().imageStr);
-    if(count>1)
-    {
+    if (count > 1) {
         count--;
-        totalPrice-=book.data().price;
+        totalPrice -= book.data().price;
         books.set(book.data().imageStr, count);
     }
-    else
-    {
-        totalPrice-=book.data().price;
+    else {
+        totalPrice -= book.data().price;
         books.delete(book.data().imageStr);
     }
     refreshCart();
 }
 
-// populates a map of the books and the number of copies
-function orderInMap()
-{
+function orderInMap() {
     booksInCart.forEach(book => {
-        if(books.has(book)===true)
-        {
+        if (books.has(book) === true) {
             let number = books.get(book);
             number++;
             books.set(book, number);
         }
-        else
-        {
+        else {
             books.set(book, 1);
         }
     });
 }
 
-function getGenre(bookIdentifier)
-{
-    while(bookIdentifier[bookIdentifier.length-1]>='0'&&bookIdentifier[bookIdentifier.length-1]<='9')
-    {
-        bookIdentifier=bookIdentifier.substring(0, bookIdentifier.length-1);
+function getGenre(bookIdentifier) {
+    while (bookIdentifier[bookIdentifier.length - 1] >= '0' && bookIdentifier[bookIdentifier.length - 1] <= '9') {
+        bookIdentifier = bookIdentifier.substring(0, bookIdentifier.length - 1);
     }
     return bookIdentifier;
 }
 
-function renderBook(book, genre, numberOfBooks)
-{
+function renderBook(book, genre, numberOfBooks) {
     totalPrice += book.data().price * numberOfBooks;
 
     let mainDiv = document.createElement('div');
@@ -97,20 +79,18 @@ function renderBook(book, genre, numberOfBooks)
     countItemsDiv.setAttribute("class", "countItemsSection");
     changeCountDiv.setAttribute("class", "incrementDecrement");
 
-    // loads image of book cover
     let img = document.createElement('img');
     var storage = firebase.storage();
     var storageRef = storage.ref();
     var genreRef = storageRef.child(genre);
-    imageName = book.data().imageStr+".jpg";
+    imageName = book.data().imageStr + ".jpg";
     var imgRef = genreRef.child(imageName);
 
-    imgRef.getDownloadURL().then(function(url) {
+    imgRef.getDownloadURL().then(function (url) {
         img.setAttribute("src", url);
         img.setAttribute("alt", "bookCover");
     });
 
-    // book data
     let spanName = document.createElement('span');
     let spanAuthor = document.createElement('span');
     let spanPrice = document.createElement('span');
@@ -118,44 +98,40 @@ function renderBook(book, genre, numberOfBooks)
     spanName.textContent = book.data().name;
     spanPrice.textContent = book.data().priceStr;
 
-    // number of copies
     let input = document.createElement('input');
     input.setAttribute("type", "text");
     input.setAttribute("id", "countItems");
     input.setAttribute("name", "countItems");
     input.value = numberOfBooks;
 
-    // increment and decrement buttons
     let increment = document.createElement('button');
     let decrement = document.createElement('button');
     increment.textContent = "+";
     decrement.textContent = "-";
 
-    increment.addEventListener("click", ()=>{
+    increment.addEventListener("click", () => {
         input.value++;
         incrementBooksCount(book);
         printTotalPrice();
     });
 
-    decrement.addEventListener("click", ()=>{
-        if(input.value>=1)
-        {
+    decrement.addEventListener("click", () => {
+        if (input.value >= 1) {
             input.value--;
             decrementBooksCount(book);
         }
         printTotalPrice();
     });
 
-    // to remove a book with all copies
     let remove = document.createElement('button');
     remove.textContent = "Премахни книга";
     remove.setAttribute("class", "remove");
 
-    remove.addEventListener("click", ()=>{
+    remove.addEventListener("click", () => {
         books.set(book.data().imageStr, 0);
-        totalPrice-=book.data().price.toFixed(2)*numberOfBooks;
+        totalPrice -= book.data().price.toFixed(2) * numberOfBooks;
         refreshCart();
-        window.location.href="./Cart.html"
+        window.location.href = "./Cart.html"
     });
 
     infoDiv.appendChild(spanName);
@@ -165,7 +141,7 @@ function renderBook(book, genre, numberOfBooks)
     descriptionDiv.appendChild(img);
     descriptionDiv.appendChild(infoDiv);
 
-    changeCountDiv.appendChild(increment);  
+    changeCountDiv.appendChild(increment);
     changeCountDiv.appendChild(decrement);
 
     countItemsDiv.appendChild(input);
@@ -180,25 +156,29 @@ function renderBook(book, genre, numberOfBooks)
     printTotalPrice();
 }
 
-function printTotalPrice()
-{
-    endSum.innerHTML = "Обща сума: "+totalPrice.toFixed(2);
+function printTotalPrice() {
+    endSum.innerHTML = "Обща сума: " + totalPrice.toFixed(2);
 }
 
 orderInMap();
 for (const [key, value] of books.entries()) {
     let genre = getGenre(key);
     let bookRef = db.collection('Books').doc(genre).collection('Titles').doc(key);
-    bookRef.get().then(doc=>{
+    bookRef.get().then(doc => {
         renderBook(doc, genre, value);
     });
 }
 
 
-/*HERE*/
 
-document.getElementById("finishOrder").addEventListener("click", ()=>{
-    
-    localStorage.books = JSON.stringify(Array.from(books.entries()));
-    location.href = "./FormOrder.html";
+
+document.getElementById("finishOrder").addEventListener("click", () => {
+    if (totalPrice == 0) {
+        alert("Няма продукти в количката.");
+    }
+    else {
+        localStorage.books = JSON.stringify(Array.from(books.entries()));
+        location.href = "./FormOrder.html";
+    }
+
 })

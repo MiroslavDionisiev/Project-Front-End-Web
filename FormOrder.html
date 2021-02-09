@@ -17,7 +17,7 @@
 <body>
     <header>
         <div class="headerSection">
-            <a href="./frontPage.html"><img src="./Logos/ShopLogo.png" alt="Logo" class="LogoImage"></a>
+            <a href="./index.html"><img src="./Logos/ShopLogo.png" alt="Logo" class="LogoImage"></a>
             <img src="./Logos/Logo.png" alt="Title">
             <a href="./Cart.html"><img src="./Logos/Cart.png" id="Cart" class="Cart" alt="CartLogo"></a>
         </div>
@@ -32,7 +32,7 @@
         </ul>
     </nav>
     <main>
-        <form action="./action_page.php">
+        <form>
             <h2>Поръчани продукти</h2>
             <table id="tableOrder">
                 <tr>
@@ -41,7 +41,7 @@
                     <td>Цена</td>
                 </tr>
             </table>
-            
+
             <h2>Основна информация</h2>
 
             <div class="generalInformation">
@@ -85,10 +85,9 @@
             <h2>Данни за доставка</h2>
 
             <div class="addressDeliveryClass">
-                <div  class = "addressDeliveryClassInside">
+                <div class="addressDeliveryClassInside">
                     <label for="addressDelivery" id="officeSpeedyID">
-                        <input type="radio" name="addressDelivery" value="officeSpeedy" id="officeSpeedyRadioID"
-                            checked>
+                        <input type="radio" name="addressDelivery" value="officeSpeedy" id="officeSpeedyRadioID" checked>
                         До офис на Спиди</label>
 
                     <label for="addressDelivery" id="officeEcontID">
@@ -102,7 +101,7 @@
                 </div>
 
 
-                <div id="deliveryToOffice" class = "addressDeliveryClassInside">
+                <div id="deliveryToOffice" class="addressDeliveryClassInside">
                     <label for="cityOffice">Град: </label>
                     <select name="city" id="citySelect">
                         <option value="" disabled selected>Изберете град:</option>
@@ -113,36 +112,36 @@
                     </select>
                 </div>
 
-                <div id="deliveryToAddress" style="display: none;" class = "addressDeliveryClassInside">
+                <div id="deliveryToAddress" style="display: none;" class="addressDeliveryClassInside">
                     <div>
                         <label for="cityAddress">Град:</label>
-                        <input type="text" name="cityAddress" placeholder="Въведете град">
+                        <input type="text" name="cityAddress" placeholder="Въведете град" id = "cityAddress">
                     </div>
                     <div>
                         <label for="postCode">П.К:</label>
-                        <input type="text" name="postCode">
+                        <input type="text" name="postCode" id = "postCodeID">
                     </div>
 
                     <div>
                         <label for="addressStreet">Адрес: </label>
-                        <input type="text" name="addressStreet" placeholder="Въведете адрес">
+                        <input type="text" name="addressStreet" placeholder="Въведете адрес" id = "freeAddressID">
                     </div>
 
                 </div>
 
-                <div class = "noteDiv">
+                <div class="noteDiv">
                     <label for="additionalNotes">Бележка (уточнение за поръчката):</label>
-                    
-                    <input type="text" name="additionalNotes" id = "notesTextField">
+
+                    <input type="text" name="additionalNotes" id="notesTextField">
                 </div>
 
-                
+
             </div>
-            <div class = "finishOrderAndPrice">
+            <div class="finishOrderAndPrice">
                 <p id="totalPrice">Цена общо: </p>
                 <input type="button" value="Поръчайте" id="submitButton">
             </div>
-            
+
         </form>
 
 
