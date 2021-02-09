@@ -2,45 +2,39 @@ const genresList = document.querySelector("#genres-list");
 //const cartLogo = document.querySelector("#Cart");
 var booksInCart = [];
 
-function refreshCart()
-{
-    if(JSON.parse(localStorage.getItem("booksInCart"))===null)
-    {
+function refreshCart() {
+    if (JSON.parse(localStorage.getItem("booksInCart")) === null) {
         localStorage.setItem("booksInCart", JSON.stringify(booksInCart));
     }
-    else
-    {
+    else {
         let arrTemp = JSON.parse(localStorage.getItem("booksInCart"));
         arrTemp = arrTemp.concat(booksInCart);
         localStorage.setItem("booksInCart", JSON.stringify(arrTemp));
     }
 }
 
-function renderLeftSide(genre, genreSelector, index)
-{
+function renderLeftSide(genre, genreSelector, index) {
     let ulLeft = document.createElement('ul');
     let li1 = document.createElement('li');
     let span = document.createElement('span');
     let li2 = document.createElement('li');
     let button = document.createElement('a');
 
-    if(index%2==0)
-    {
+    if (index % 2 == 0) {
         ulLeft.setAttribute("class", "colourForLeftFirstType leftSideOfRow noDefaultListStyle");
         button.setAttribute("class", "buttonStyleFirst");
     }
-    else
-    {
+    else {
         ulLeft.setAttribute("class", "colourForLeftSecondType leftSideOfRow noDefaultListStyle");
         button.setAttribute("class", "buttonStyleSecond");
     }
 
-    span.textContent=genre;
-    button.textContent="Виж още"
-    let HrefNext = genreSelector+".html";
+    span.textContent = genre;
+    button.textContent = "Виж още"
+    let HrefNext = genreSelector + ".html";
     button.setAttribute("href", HrefNext);
 
-    button.addEventListener("click", ()=>{
+    button.addEventListener("click", () => {
         refreshCart();
     })
 
@@ -53,23 +47,19 @@ function renderLeftSide(genre, genreSelector, index)
     return ulLeft;
 }
 
-function renderRightSide(doc, genre, index)
-{
+function renderRightSide(doc, genre, index) {
     let ulRight = document.createElement('ul');
-    genre.collection('Titles').get().then((snapshot)=>{
+    genre.collection('Titles').get().then((snapshot) => {
         let indexCurrent = 1;
-        if(index%2==0)
-        {
+        if (index % 2 == 0) {
             ulRight.setAttribute("class", "colourForRightFirstType rightSideOfRow noDefaultListStyle");
         }
-        else
-        {
+        else {
             ulRight.setAttribute("class", "colourForRighttSecondType rightSideOfRow noDefaultListStyle");
         }
         let indexCount = 1;
         snapshot.forEach(book => {
-            if(indexCount<=8)
-            {
+            if (indexCount <= 8) {
                 let currentBook = doc.data().genreSelector + indexCurrent;
                 ulRight.appendChild(renderRightSideUtility(book, doc.data().genreSelector, currentBook));
                 indexCurrent++;
@@ -81,8 +71,7 @@ function renderRightSide(doc, genre, index)
     return ulRight;
 }
 
-function renderRightSideUtility(doc, genre, imageName)
-{
+function renderRightSideUtility(doc, genre, imageName) {
     let documentName = imageName;
 
     let li = document.createElement('li');
@@ -97,28 +86,28 @@ function renderRightSideUtility(doc, genre, imageName)
     var storage = firebase.storage();
     var storageRef = storage.ref();
     var genreRef = storageRef.child(genre);
-    imageName+=".jpg"
+    imageName += ".jpg"
     var imgRef = genreRef.child(imageName);
-    
-    imgRef.getDownloadURL().then(function(url) {
-      img.setAttribute("src", url);
+
+    imgRef.getDownloadURL().then(function (url) {
+        img.setAttribute("src", url);
     });
 
-    name.textContent=doc.data().name;
-    author.textContent=doc.data().author;
-    price.textContent=doc.data().priceStr;
-    button.textContent="Добави в количка";
+    name.textContent = doc.data().name;
+    author.textContent = doc.data().author;
+    price.textContent = doc.data().priceStr;
+    button.textContent = "Добави в количка";
     button.setAttribute("href", "./Cart.html")
     button.setAttribute("id", "buttonToCart")
 
-    button.addEventListener("click", ()=>{
+    button.addEventListener("click", () => {
         booksInCart.push(documentName);
         refreshCart();
     });
 
     div.setAttribute("class", "bookDescription");
 
-    let directory = transliterate(doc.data().name)+".html";
+    let directory = transliterate(doc.data().name) + ".html";
 
     description.setAttribute("class", "selectBook");
     description.setAttribute("href", directory);
@@ -170,16 +159,18 @@ function transliterate(text) {
         .replace(/ю/gi, 'yu')
         .replace(/я/gi, 'ya')
 
-        .replace(/\u0020/gi,'-')
-        .replace(',','')
-        .replace('.','')
-        
+        .replace(/\u0020/gi, '-')
+        .replace(',', '')
+        .replace('.', '')
+
+        .replace(/"/gi, '')
+        .replace(':', '')
+
 
     return text;
 };
 
-function render(doc, index)
-{
+function render(doc, index) {
     let liMain = document.createElement('li');
     let divMainRow = document.createElement('div');
 
@@ -190,10 +181,10 @@ function render(doc, index)
     genresList.appendChild(liMain);
 }
 
-db.collection('Books').get().then((snapshot)=>{
+db.collection('Books').get().then((snapshot) => {
     let index = 0;
     snapshot.docs.forEach(doc => {
-        render(doc,index);
+        render(doc, index);
         index++;
     });
 })
