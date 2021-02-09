@@ -301,7 +301,8 @@ function validateInput() {
 document.getElementById("submitButton").addEventListener("click", function () {
 
   if (validateInput() == true) {
-    localStorage.clear();
+    localStorage.setItem("booksInCart", JSON.stringify([]));
+    localStorage.setItem("books", new Map);
     location.href = "./OrderSuccessful.html";
   }
 })
