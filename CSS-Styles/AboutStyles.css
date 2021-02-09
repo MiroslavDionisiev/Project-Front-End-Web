@@ -96,16 +96,13 @@ nav a:hover
 
 main
 {
-    padding-bottom: 180px;
+    padding-bottom: 230px;
 }
 
 #aboutInfo
 {
     margin-left: 3%;
     margin-right: 3%;
-    font-size: 18px;
-    text-align: justify;
-    text-indent: 2%;
 }
 
 footer
@@ -116,6 +113,7 @@ footer
     color: white;
     position: absolute;
     bottom: 0;
+    height: 230px;
     width: 100%;
 }
 

@@ -116,6 +116,12 @@ nav a:hover
 
     
 }
+
+main
+{
+    padding-bottom: 230px;
+}
+
 h2 {
     margin-left: 20px;
     margin-right: 20px;
@@ -131,7 +137,6 @@ table{
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 95%;
-    text-decoration: none;
 }
 table tr:first-child{
     font-size: 18px;
@@ -238,9 +243,6 @@ select{
     font-size: larger;
 }
 
-#submitButton :hover{
-    background-color: #3b4b56;
-}
 footer
 {
     
@@ -249,6 +251,7 @@ footer
     background-color: #3b4b56;
     color: white;
     bottom: 0;
+    height: 230px;
     width: 100%;
 }
 

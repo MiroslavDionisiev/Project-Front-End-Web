@@ -103,7 +103,7 @@ nav a:hover
 
 main
 {
-    padding-bottom: 180px;
+    padding-bottom: 230px;
 }
 
 .colourForLeftFirstType
@@ -288,6 +288,7 @@ footer
     color: white;
     position: absolute;
     bottom: 0;
+    height: 230px;
     width: 100%;
 }
 
