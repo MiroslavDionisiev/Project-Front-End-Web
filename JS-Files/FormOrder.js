@@ -11,41 +11,42 @@ var citiesAndOffices;
 function getOffices() {
   var xhttp = new XMLHttpRequest();
   xhttp.addEventListener("load", function () {
-      citiesAndOffices = JSON.parse(xhttp.responseText);
-      console.log(citiesAndOffices);
+    
+    citiesAndOffices = JSON.parse(xhttp.responseText);
+    //console.log(citiesAndOffices);
   });
-  
+
   //false means we send a Synchronous request, so that we are sure we have the needed data before we try to work with it
-  xhttp.open("GET", "../JSON-Files/delivererOffices.json", false); 
+  xhttp.open("GET", "../JSON-Files/delivererOffices.json", false);
   xhttp.send();
 }
 getOffices();
 
-function addCities(deliverer){
-    
-    //console.log(citiesAndOffices["Speedy"]["cities"]);
-    for (const [key, value] of Object.entries(citiesAndOffices[deliverer]["cities"])) {
-      //addOffices(deliverer, value.name)
-      let option = document.createElement("option");
-      option.text = value.name;
-      selectCities.add(option);
-    }
+function addCities(deliverer) {
+
+  //console.log(citiesAndOffices["Speedy"]["cities"]);
+  for (const [key, value] of Object.entries(citiesAndOffices[deliverer]["cities"])) {
+    //addOffices(deliverer, value.name)
+    let option = document.createElement("option");
+    option.text = value.name;
+    selectCities.add(option);
+  }
 }
 
-function clearSelectCities(){
+function clearSelectCities() {
   var length = selectCities.options.length;
-  for (i = length-1; i > 0; i--) {
+  for (i = length - 1; i > 0; i--) {
     selectCities.options[i] = null;
   }
 }
-function clearSelectOffices(){
+function clearSelectOffices() {
   var length = selectOffices.options.length;
-  for (i = length-1; i > 0; i--) {
+  for (i = length - 1; i > 0; i--) {
     selectOffices.options[i] = null;
   }
 }
 
-function addOffices(deliverer, city){
+function addOffices(deliverer, city) {
   //console.log(citiesAndOffices[deliverer]["cities"][city]["offices"].length)
   citiesAndOffices[deliverer]["cities"][city]["offices"].forEach(element => {
     let option = document.createElement("option");
@@ -54,7 +55,7 @@ function addOffices(deliverer, city){
   });
 }
 
-selectCities.addEventListener("change",function (){
+selectCities.addEventListener("change", function () {
   clearSelectOffices();
   let selectedCity = selectCities.value;
   let deliverer = "";
@@ -144,11 +145,7 @@ function transliterate(text) {
   return text;
 };
 
-/*let tr = document.createElement("tr");
-table.appendChild(tr);
-let td = document.createElement("td");
-tr.appendChild(td);
-td.innerHTML = "";*/
+
 
 //by default Speedy is checked
 if (document.getElementById("speedyRadio").checked == true) {
@@ -252,7 +249,7 @@ function validateInput() {
   let indA = email.indexOf('@');
   if (indA > 0) { //we want to have some characters before @
     let afterA = email.substring(indA + 1, email.length);
-    
+
     if (afterA.indexOf('.') == -1 || afterA.indexOf('.') == afterA.length - 1) {
       alert("Невалиден имейл адрес.");
       return false;
@@ -302,20 +299,10 @@ function validateInput() {
 }
 
 document.getElementById("submitButton").addEventListener("click", function () {
-  console.log(validateInput());
+
+  if (validateInput() == true) {
+    localStorage.clear();
+    location.href = "./OrderSuccessful.html";
+  }
 })
-
-
-//HTTP request for cities and offices
-/*function reqListener () {
-  console.log(14);
-  console.log(this.responseText);
-}
-
-var oReq = new XMLHttpRequest();
-oReq.addEventListener("load", reqListener);
-oReq.open("GET", "./JSON-Files/delivererOffices.json");
-oReq.send();*/
-
-
 
