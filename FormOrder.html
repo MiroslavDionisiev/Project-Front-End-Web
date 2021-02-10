@@ -61,7 +61,7 @@
                 </div>
 
                 <div>
-                    <label for="lname">Телефон:</label>
+                    <label for="phoneCustomer">Телефон:</label>
                     <input type="text" id="phoneCustomer" name="phoneCustomer" placeholder="Въведете телефон:">
                 </div>
 
@@ -70,14 +70,14 @@
             <h2>Куриер</h2>
             <div class="deliverer">
 
-                <label for="deliverer">
+                <label for="speedyRadio">
                     <input type="radio" name="deliverer" value="Speedy" checked id="speedyRadio">
                     <img src="./Logos/speedy-logo.png" alt="Speedy" class="delivererLogo">
                 </label>
 
-                <label for="deliverer">
+                <label for="econtRadio">
                     <input type="radio" name="deliverer" value="Econt" id="econtRadio">
-                    <img src="./Logos/Econt.png" alt="Speedy" class="delivererLogo">
+                    <img src="./Logos/Econt.png" alt="Econt" class="delivererLogo">
                 </label>
 
             </div>
@@ -86,15 +86,15 @@
 
             <div class="addressDeliveryClass">
                 <div class="addressDeliveryClassInside">
-                    <label for="addressDelivery" id="officeSpeedyID">
+                    <label for="officeSpeedyRadioID" id="officeSpeedyID">
                         <input type="radio" name="addressDelivery" value="officeSpeedy" id="officeSpeedyRadioID" checked>
                         До офис на Спиди</label>
 
-                    <label for="addressDelivery" id="officeEcontID">
+                    <label for="officeEcontRadioID" id="officeEcontID">
                         <input type="radio" name="addressDelivery" value="officeEcont" id="officeEcontRadioID" checked>
                         До офис на Еконт</label>
 
-                    <label for="addressDelivery" id="toAddressID">
+                    <label for="deliveryToAddressRadio" id="toAddressID">
                         <input type="radio" name="addressDelivery" value="address" id="deliveryToAddressRadio">
                         До адрес</label>
 
@@ -102,11 +102,11 @@
 
 
                 <div id="deliveryToOffice" class="addressDeliveryClassInside">
-                    <label for="cityOffice">Град: </label>
+                    <label for="citySelect">Град: </label>
                     <select name="city" id="citySelect">
                         <option value="" disabled selected>Изберете град:</option>
                     </select>
-                    <label for="office">Офис:</label>
+                    <label for="officeSelect">Офис:</label>
                     <select name="office" id="officeSelect">
                         <option value="" disabled selected>Изберете офис:</option>
                     </select>
@@ -118,19 +118,19 @@
                         <input type="text" name="cityAddress" placeholder="Въведете град" id = "cityAddress">
                     </div>
                     <div>
-                        <label for="postCode">П.К:</label>
+                        <label for="postCodeID">П.К:</label>
                         <input type="text" name="postCode" id = "postCodeID">
                     </div>
 
                     <div>
-                        <label for="addressStreet">Адрес: </label>
+                        <label for="freeAddressID">Адрес: </label>
                         <input type="text" name="addressStreet" placeholder="Въведете адрес" id = "freeAddressID">
                     </div>
 
                 </div>
 
                 <div class="noteDiv">
-                    <label for="additionalNotes">Бележка (уточнение за поръчката):</label>
+                    <label for="notesTextField">Бележка (уточнение за поръчката):</label>
 
                     <input type="text" name="additionalNotes" id="notesTextField">
                 </div>
